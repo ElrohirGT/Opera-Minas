@@ -8,10 +8,10 @@
 </head>
 <body>
   <h1>Opera-Minas</h1>
-  <form action="./includes/index.inc.php">
-    <button type="submit" name="submit" value="8">8x8</button>
-    <button type="submit" name="submit" value="10">10x10</button>
-    <button type="submit" name="submit" value="12">12x12</button>
+  <form action="./includes/index.inc.php" method="POST">
+    <button type="submit" name="dificultad" value="8">8x8</button>
+    <button type="submit" name="dificultad" value="10">10x10</button>
+    <button type="submit" name="dificultad" value="12">12x12</button>
   </form>
 </body>
 </html>
