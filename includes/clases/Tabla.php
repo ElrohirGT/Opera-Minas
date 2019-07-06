@@ -33,12 +33,24 @@ class Tabla
     }
   }
   
-  function ponerMinas() {// 1/5 de las celdas son bombas
-    //Le toca a Erick
+  function ponerMinas() {
+    $contador_de_minas=0;
+    $total_casillas=$dificultad*$dificultad;
+    $total_minas=$total_casillas*0.20;
+    while($contador_de_minas<$total_minas){
+      $indice=rand(0, $this->dificultad-1);
+      $subindice=rand(0, $this->dificultad-1);
+        $celda=$this->tablero[$indice][$subindice];
+        if(!$celda->tieneMina()){
+        $celda->agregarMina();
+        $contador_de_minas++;
+        $this->tablero[$indice][$subindice]=$celda;
+        }
+    }
   }
   function ponerPreguntas() {// Recuerda que van a haber preguntas para diferentes dificultades
     //Puedes crear una clase pregunta, para crear funciones que chequeen si esta bien la respuesta que de el usuario y para guardar las respuestas.
-    //Le toca a Tojin
+    //Le toca a Erick
   }
   function ponerIndicaciones() {
     foreach ($this->tablero as $fila => $celdas) {
