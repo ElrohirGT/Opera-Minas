@@ -22,7 +22,15 @@ class Tabla
   }
 
   function mostrarTablero() {
-
+    foreach ($this->tablero as $indice => $fila) {
+      echo "<tr>";
+      foreach ($fila as $subIndice => $celda) {
+        echo "<td class='{$celda->clase()}'>";
+          echo "<button type='submit' value='[{$indice},{$subIndice}]'></button>";
+        echo "</td>";
+      }
+      echo "</tr>";
+    }
   }
   
   function ponerMinas() {// 1/5 de las celdas son bombas

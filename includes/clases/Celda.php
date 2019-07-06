@@ -5,6 +5,9 @@ class Celda
   private $pregunta;
   private $mina;
   private $indicacion = 0;
+
+  private $marcada = false;
+  private $mostrada = false;
   function agregarMina() {
     $this->mina = true;
   }
@@ -25,6 +28,18 @@ class Celda
   }
   function unaMinaCerca() {
     $this->indicacion += 1;
+  }
+  function marcarCelda() {
+    $this->marcada = true;
+  }
+  function clase() {
+    $string = "celda";
+    if ($this->marcada) {
+      $string += "marcada";
+    } else if ($this->mostrada) {
+      $string += "mostrada";
+    }
+    return $string;
   }
 }
 
