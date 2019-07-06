@@ -16,10 +16,13 @@ class Tabla
         $this->tablero[$indice][$subIndice] = new Celda();
       }
     }
-    $this->tablero[0][0]->agregarMina();
     $this->preguntas = [];
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
+  }
+
+  function mostrarTablero() {
+
   }
   
   function ponerMinas() {// 1/5 de las celdas son bombas
@@ -32,15 +35,13 @@ class Tabla
   function ponerIndicaciones() {
     foreach ($this->tablero as $fila => $celdas) {
       foreach ($celdas as $indice => $celda) {
-        $celdasAdyacentes = $this->obtenerCeldasAdyacentes($fila, $indice);
-        
-        echo "Celdas Adyacentes";
-        echo "<pre>";
-        var_dump($celdasAdyacentes);
-        echo "</pre>";
-        foreach ($celdasAdyacentes as $posicion) {
-          if (!$this->tablero[$posicion[0]][$posicion[1]]->tieneMina()) {
-            $this->tablero[$posicion[0]][$posicion[1]]->unaMinaCerca();
+        if ($celda->tieneMina()) {
+          $celdasAdyacentes = $this->obtenerCeldasAdyacentes($fila, $indice);
+
+          foreach ($celdasAdyacentes as $celdaAdyacente) {
+            if (!$this->tablero[$celdaAdyacente[0]][$celdaAdyacente[1]]->tieneMina()) {              
+              $this->tablero[$celdaAdyacente[0]][$celdaAdyacente[1]]->unaMinaCerca();
+            }
           }
         }
       }
@@ -58,20 +59,10 @@ class Tabla
     return $this->filtrarCeldasAdyacentes($posiciones);
   }
   private function filtrarCeldasAdyacentes($posiciones) {
-    // while (list($indice, $posicion) = each($posiciones)) {
-    //   if ($posicion[0] < 0 || $posicion[1] < 0) {
-    //     unset($posiciones[$indice]);
-    //   } else if ($posicion[0] > $this->dificultad || $posicion[1] > $this->dificultad) {
-    //     unset($posiciones[$indice]);
-    //   } else if ($posicion[0] === 8 || $posicion[1] === 8) {
-    //     echo "HOW DE FAQ IM HERE ";
-    //     echo "{$indice}<br>";
-    //   }
-    // }
     foreach ($posiciones as $indice => $posicion) {
       if ($posicion[0] < 0 || $posicion[1] < 0) {
         unset($posiciones[$indice]);
-      }else if ($posicion[0]>$this->dificultad || $posicion[1]>$this->dificultad) {
+      }else if ($posicion[0]>=$this->dificultad || $posicion[1]>=$this->dificultad) {
         unset($posiciones[$indice]);
       }else if ($posicion[0]=== 8 || $posicion[1]===8) {
         echo "HOW DE FAQ IM HERE ";
