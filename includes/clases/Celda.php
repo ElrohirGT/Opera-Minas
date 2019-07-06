@@ -4,7 +4,7 @@ class Celda
 {
   private $pregunta;
   private $mina;
-  private $indicacion;
+  private $indicacion = 0;
   function agregarMina() {
     $this->mina = true;
   }
@@ -23,8 +23,8 @@ class Celda
     }
     return false;
   }
-  function agregarIndicacion($indicacion) {
-    $this->indicacion = $indicacion;
+  function unaMinaCerca() {
+    $this->indicacion += 1;
   }
 }
 

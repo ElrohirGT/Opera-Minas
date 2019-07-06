@@ -13,14 +13,14 @@ if (!isset($_POST['dificultad'])) {
 
 $tabla = new Tabla($_POST['dificultad']);
 
-echo "<h1><b>VARDUMP ANTES DE FUNCIONES</b></h1>";
-echo "<pre>";
-  var_dump($tabla);
-echo "</pre>";//Los pre ponen bonito el var_dump
+// echo "<h1><b>VARDUMP ANTES DE FUNCIONES</b></h1>";
+// echo "<pre>";
+//   var_dump($tabla);
+// echo "</pre>";//Los pre ponen bonito el var_dump
 
 // $tabla->ponerMinas();//Son las bombas. Le toca a Erick
 // $tabla->ponerPreguntas();//Las preguntas. Le toca a Tojin
-// $tabla->ponerIndicaciones();//Los números de las celdas para dar pistas al jugaddor. Le toca a FLavio
+$tabla->ponerIndicaciones();//Los números de las celdas para dar pistas al jugaddor. Le toca a FLavio
 echo "<h1><b>VARDUMP DESPUES DE FUNCIONES</b></h1>";
 echo "<pre>";
   var_dump($tabla);
