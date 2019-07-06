@@ -37,12 +37,10 @@ label {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  transition: .2s;
+  cursor: pointer;
 }
 input:checked + label {
-  background: #e70239;
-  border: .1rem solid #383844;
-  /* box-shadow: 0 0 .3rem .3rem #1d0007; */
+  background: linear-gradient(#1d0007 1%, #e70239);
 }
 img {
   display: inline-block;
@@ -58,7 +56,18 @@ tr td {
   width: 1.5rem;
   height: 1.5rem;
 }
+td {
+  text-align: center;
+}
 td button {
   width: 100%;
   height: 1.5rem;
+}
+.mostrada button{
+  background-color: #8b8b8f;
+  color: black;
+  font-weight: 600;
+}
+.marcada button {
+  background: #e70239;
 }

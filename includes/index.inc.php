@@ -13,22 +13,23 @@ if (!isset($_POST['dificultad'])) {
 
 $tabla = new Tabla($_POST['dificultad']);
 
-echo "<h1><b>VARDUMP ANTES DE FUNCIONES</b></h1>";
-echo "<pre>";
-  var_dump($tabla);
-echo "</pre>";//Los pre ponen bonito el var_dump
+//FIXME: Descomentar los pre y var_dumps
+// echo "<h1><b>VARDUMP ANTES DE FUNCIONES</b></h1>";
+// echo "<pre>";
+//   var_dump($tabla);
+// echo "</pre>";//Los pre ponen bonito el var_dump
 
 $tabla->ponerMinas();//Son las bombas. Le toca a Tojin
 $tabla->ponerPreguntas();//Las preguntas. Le toca a Erick
 $tabla->ponerIndicaciones();//Los números de las celdas para dar pistas al jugaddor. Le toca a FLavio
-// $_SESSION["tabla"] = $tabla;
+$_SESSION["tabla"] = $tabla;
 
-// header("Location: ../juego.php");
+header("Location: ../juego.php");
 
-echo "<h1><b>VARDUMP DESPUES DE FUNCIONES</b></h1>";
-echo "<pre>";
-  var_dump($tabla->tablero);
-echo "</pre>";//Los pre ponen bonito el var_dump
+// echo "<h1><b>VARDUMP DESPUES DE FUNCIONES</b></h1>";
+// echo "<pre>";
+//   var_dump($tabla->tablero);
+// echo "</pre>";//Los pre ponen bonito el var_dump
 
 //Al terminar de hacer estas funciones tendríamos que tener algo asi como
 
