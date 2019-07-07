@@ -6,7 +6,7 @@ spl_autoload_register(function ($nombre){
 });
 session_start();
 
-if (!isset($_POST['celda'])) {
+if (!isset($_POST['respuesta']) && !isset($_POST['celda'])) {
   header("Location: ../juego.php?var=e");
 }
 
@@ -21,11 +21,20 @@ $celda = $tabla->obtenerCelda($indices);
 
 if (isset($_POST['marcar'])) {
   $celda->marcarCelda();
-} else if ($celda->tieneMina()) {
+} elseif (isset($_POST['respuesta'])) {
+  if(!$celda->obtenerPregunta()->validar($_POST['respuesta'])) {
+    $celda->mostrarCelda();
+  } else {
+    $tabla->mostrarCeldas($indices, 2);
+  }
+  $_SESSION['pregunta'] = null;
+} 
+else if ($celda->tieneMina()) {
   header("Location: ../perdiste.php");
   exit();
 } else if ($celda->tienePregunta()) {
   $_SESSION['pregunta'] = $celda->obtenerPregunta();
+  $_SESSION['celda'] = $_POST['celda'];
 } else {
   $celda->mostrarCelda();
 }

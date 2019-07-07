@@ -1,6 +1,7 @@
 <?php
 
 require 'Celda.php';
+require 'Pregunta.php';
 
 class Tabla
 {
@@ -16,7 +17,7 @@ class Tabla
         $this->tablero[$indice][$subIndice] = new Celda();
       }
     }
-    $this->tablero[0][0]->agregarMina();
+    $this->tablero[0][0]->agregarPregunta(new Pregunta("Despeja x: 2x+1=5", 2));
     $this->preguntas = [];
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
@@ -37,6 +38,19 @@ class Tabla
       echo "</tr>";
     }
   }
+  function mostrarCeldas($origen, $nivel) {
+    $indice = $origen[0];
+    $subIndice = $origen[1];
+    $celdasAdyacentes = $this->obtenerCeldasAdyacentes($indice, $subIndice);
+    foreach ($celdasAdyacentes as $celdaAdyacente) {
+      if ($nivel-1!=0) {
+        $this->mostrarCeldas($celdaAdyacente, $nivel-1);
+      } else if (!$this->tablero[$celdaAdyacente[0]][$celdaAdyacente[1]]->tieneMina()) {              
+        $this->tablero[$celdaAdyacente[0]][$celdaAdyacente[1]]->mostrarCelda();
+      }
+    }
+    $this->tablero[$indice][$subIndice]->mostrarCelda();
+  }
   function obtenerCelda($ubicaciones) {
     return $this->tablero[$ubicaciones[0]][$ubicaciones[1]];
   }
@@ -47,8 +61,20 @@ class Tabla
     return explode('|', $string);
   }
   
-  function ponerMinas() {// 1/5 de las celdas son bombas
-    //Le toca a Tojin
+  function ponerMinas() {
+    $contador_de_minas=0;
+    $total_casillas=$this->dificultad*$this->dificultad;
+    $total_minas=$total_casillas*0.20;
+    while($contador_de_minas<$total_minas){
+      $indice=rand(0, $this->dificultad-1);
+      $subindice=rand(0, $this->dificultad-1);
+        $celda=$this->tablero[$indice][$subindice];
+        if(!$celda->tieneMina()){
+        $celda->agregarMina();
+        $contador_de_minas++;
+        $this->tablero[$indice][$subindice]=$celda;
+        }
+    }
   }
   function ponerPreguntas() {// Recuerda que van a haber preguntas para diferentes dificultades
     //Puedes crear una clase pregunta, para crear funciones que chequeen si esta bien la respuesta que de el usuario y para guardar las respuestas.
@@ -77,7 +103,6 @@ class Tabla
       [$fila+1, $indice+1], [$fila+1, $indice-1],
       [$fila-1, $indice-1], [$fila-1, $indice+1]
     ];
-    echo "CELDA ORIGINAL: |{$fila}|{$indice}|<br>";
     return $this->filtrarCeldasAdyacentes($posiciones);
   }
   private function filtrarCeldasAdyacentes($posiciones) {

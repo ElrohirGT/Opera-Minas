@@ -30,21 +30,30 @@ $tabla = $_SESSION['tabla'];
       <div><h1 class="resaltado"> <span>O</span>pera-<span>M</span>inas</h1></div>
     </div>
     <form action="includes/juego.inc.php" method="post">
-    <table>
-      <?php
-        $tabla->mostrarTablero();
-      ?>
-    </table>
-    <input type="checkbox" name="marcar" value="true" id="marcar">
-    <label for="marcar">
-      <img src="imgs/flag.png">
-    </label>
+      <table>
+        <?php
+          $tabla->mostrarTablero();
+        ?>
+      </table>
+      <input type="checkbox" name="marcar" value="true" id="marcar">
+      <label for="marcar">
+        <img src="imgs/flag.png">
+      </label>
     </form>
   </div>
-  <div>
-      Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a><br>
-      from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><br>
-      is licensed by <a href="http://creativecommons.org/licenses/by/3.0/ "title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+  <?php if (!empty($_SESSION['pregunta'])) { ?>
+    <div class="contenedorPregunta">
+      <form action="includes/juego.inc.php" method="post">
+        <h1><?=$_SESSION['pregunta']->pregunta?></h1>
+        <input type="text" name="respuesta" placeholder="Tu respuesta:">
+        <button type="submit" class="link" name="celda" value="<?=$_SESSION['celda']?>">Responder</button>
+      </form>
     </div>
+  <?php } ?>
+  <div>
+    Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a><br>
+    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><br>
+    is licensed by <a href="http://creativecommons.org/licenses/by/3.0/ "title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+  </div>
 </body>
 </html>

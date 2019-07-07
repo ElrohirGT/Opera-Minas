@@ -11,9 +11,11 @@
   <div class="contenedor">
     <h1 class="resaltado"> <span>O</span>pera-<span>M</span>inas</h1>
     <form action="./includes/index.inc.php" method="POST">
-      <button type="submit" name="dificultad" value="8">8x8</button>
-      <button type="submit" name="dificultad" value="10">10x10</button>
-      <button type="submit" name="dificultad" value="12">12x12</button>
+      <div class="grid3">
+        <button type="submit" name="dificultad" value="8">8x8</button>
+        <button type="submit" name="dificultad" value="10">10x10</button>
+        <button type="submit" name="dificultad" value="12">12x12</button>
+      </div>
     </form>
   </div>
 </body>
