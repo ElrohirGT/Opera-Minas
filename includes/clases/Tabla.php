@@ -19,12 +19,7 @@ class Tabla
       }
     }
     //$this->tablero[0][0]->agregarPregunta(new Pregunta("Despeja x: 2x+1=5", 2));
-    $this->preguntas = [new Pregunta("Despeja x: 2x+1=5", 2)
-                        ,new Pregunta('1x2','2')
-                        ,new Pregunta('1x3','3')
-                        ,new Pregunta('1x4','4')
-                        ,new Pregunta('1x5','5')
-                      ];
+    $this->preguntas =  $Preguntas.php[$dificultad];
   
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
