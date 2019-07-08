@@ -25,6 +25,15 @@ $tabla = $_SESSION['tabla'];
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <?php if (!empty($_SESSION['pregunta'])) { ?>
+    <div class="contenedorPregunta">
+      <form action="includes/juego.inc.php" method="post">
+        <h1><?=$_SESSION['pregunta']->pregunta?></h1>
+        <input type="text" name="respuesta" placeholder="Tu respuesta:">
+        <button type="submit" class="link" name="celda" value="<?=$_SESSION['celda']?>">Responder</button>
+      </form>
+    </div>
+  <?php } ?>
   <div class="contenedor">
     <div class="header">
       <div><h1 class="resaltado"> <span>O</span>pera-<span>M</span>inas</h1></div>
@@ -41,15 +50,6 @@ $tabla = $_SESSION['tabla'];
       </label>
     </form>
   </div>
-  <?php if (!empty($_SESSION['pregunta'])) { ?>
-    <div class="contenedorPregunta">
-      <form action="includes/juego.inc.php" method="post">
-        <h1><?=$_SESSION['pregunta']->pregunta?></h1>
-        <input type="text" name="respuesta" placeholder="Tu respuesta:">
-        <button type="submit" class="link" name="celda" value="<?=$_SESSION['celda']?>">Responder</button>
-      </form>
-    </div>
-  <?php } ?>
   <div>
     Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a><br>
     from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><br>

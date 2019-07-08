@@ -33,7 +33,7 @@ class Celda
     return $this->pregunta;
   }
   function marcarCelda() {
-    $this->marcada = true;
+    $this->marcada = !$this->marcada;
   }
   function mostrarCelda() {
     $this->estado = true;

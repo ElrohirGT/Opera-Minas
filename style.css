@@ -3,11 +3,11 @@ body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to bottom right, #a4b0be, #2f3542);
+  background: linear-gradient(to bottom right, #343a46, #2f3542);
 }
 button, .link {
   border: none;
-  background: #383844;
+  background: #8b8b8f;
   color: white;
   transition: .1s;
   text-decoration: none;
@@ -16,7 +16,7 @@ button, .link {
   padding: .8rem 1rem;
 }
 button:hover {
-  background: #8b8b8f;
+  background: #383844;
 }
 .contenedor {
   position: absolute;
@@ -31,7 +31,9 @@ button:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(48,125,103,.85);
+  color: white;
+  background-color: rgba(6,49,66,.9);
+  z-index: 2;
 }
 .contenedorPregunta form {
   position: absolute;

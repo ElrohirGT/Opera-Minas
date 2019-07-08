@@ -8,6 +8,7 @@ class Tabla
   public $tablero;
   public $preguntas;
   private $dificultad;
+  private $contadorMinas;
   function __construct($dificultad) {
     $this->dificultad = $dificultad;
     $this->tablero = new SplFixedArray($dificultad);
@@ -49,7 +50,9 @@ class Tabla
         $this->tablero[$celdaAdyacente[0]][$celdaAdyacente[1]]->mostrarCelda();
       }
     }
-    $this->tablero[$indice][$subIndice]->mostrarCelda();
+    if (!$this->tablero[$indice][$subIndice]->tieneMina()) {
+      $this->tablero[$indice][$subIndice]->mostrarCelda();
+    }
   }
   function obtenerCelda($ubicaciones) {
     return $this->tablero[$ubicaciones[0]][$ubicaciones[1]];
@@ -60,7 +63,12 @@ class Tabla
   function parsear($string) {
     return explode('|', $string);
   }
-  
+  function unaMinaMenos() {
+    $this->contadorMinas--;
+  }
+  function hayMinas() {
+    return ($this->contadorMinas > 0)? true : false;
+  }
   function ponerMinas() {
     $contador_de_minas=0;
     $total_casillas=$this->dificultad*$this->dificultad;
@@ -75,6 +83,7 @@ class Tabla
         $this->tablero[$indice][$subindice]=$celda;
         }
     }
+    $this->contadorMinas = $contador_de_minas;
   }
   function ponerPreguntas() {// Recuerda que van a haber preguntas para diferentes dificultades
     //Puedes crear una clase pregunta, para crear funciones que chequeen si esta bien la respuesta que de el usuario y para guardar las respuestas.

@@ -21,6 +21,12 @@ $celda = $tabla->obtenerCelda($indices);
 
 if (isset($_POST['marcar'])) {
   $celda->marcarCelda();
+  if ($celda->tieneMina()) {
+    $tabla->unaMinaMenos();
+    if (!$tabla->hayMinas()) {
+      header("Location: ../ganado.php");
+    }
+  }
 } elseif (isset($_POST['respuesta'])) {
   if(!$celda->obtenerPregunta()->validar($_POST['respuesta'])) {
     $celda->mostrarCelda();
