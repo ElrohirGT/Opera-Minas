@@ -1,5 +1,5 @@
 <?php
-     $setPreguntas = ["8"=> [
+    ["8"=> [
             new Pregunta("1+1", 1)
             ,new Pregunta("2+1", 2)
             ,new Pregunta("3+1", 3)
