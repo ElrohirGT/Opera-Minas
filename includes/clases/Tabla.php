@@ -2,11 +2,12 @@
 
 require 'Celda.php';
 require 'Pregunta.php';
+require 'Preguntas.php';
 
 class Tabla
 {
   public $tablero;
-  public $preguntas;
+  public $xpreguntas;
   private $dificultad;
   private $contadorMinas;
   function __construct($dificultad) {
@@ -19,8 +20,8 @@ class Tabla
       }
     }
     //$this->tablero[0][0]->agregarPregunta(new Pregunta("Despeja x: 2x+1=5", 2));
-    $this->preguntas =  $Preguntas.php[$dificultad];
-  
+     $this->xpreguntas =   new preguntas($dificultad);
+
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
   }
@@ -100,8 +101,8 @@ class Tabla
       $subindice=rand(0, $this->dificultad-1);
         $celda=$this->tablero[$indice][$subindice];
         if(!$celda->tieneMina() && !$celda ->tienePregunta()){
-          $numeroPregunta = rand(0,4);
-          $celda->agregarPregunta($this->preguntas[$numeroPregunta]);         
+          $numeroPregunta = rand(0,9);
+          $celda->agregarPregunta($this->xpreguntas[$numeroPregunta]);         
           $contador_de_preguntas++;
           $this->tablero[$indice][$subindice]=$celda;
         }
