@@ -5,7 +5,7 @@ class Pregunta
   public $pregunta;
   private $respuesta;
 
-  function __construct($pregunta, $respuesta) {
+  function __construct(string $pregunta, $respuesta) {
     $this->pregunta = $pregunta;
     $this->respuesta = $respuesta;
   }

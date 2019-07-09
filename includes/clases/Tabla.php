@@ -9,7 +9,7 @@ class Tabla
   public $preguntas;
   private $dificultad;
   private $contadorMinas;
-  function __construct($dificultad) {
+  function __construct( int $dificultad) {
     $this->dificultad = $dificultad;
     $this->tablero = new SplFixedArray($dificultad);
     foreach ($this->tablero as $indice => $value) {
@@ -18,7 +18,7 @@ class Tabla
         $this->tablero[$indice][$subIndice] = new Celda();
       }
     }
-    $this->tablero[0][0]->agregarPregunta(new Pregunta("Despeja x: 2x+1=5", 2));
+    $this->tablero[$dificultad/2][$dificultad/2]->agregarPregunta(new Pregunta("Despeje x: 2x+1 = 5", 2));
     $this->preguntas = [];
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
@@ -64,7 +64,7 @@ class Tabla
     return explode('|', $string);
   }
   function unaMinaMenos() {
-    $this->contadorMinas--;
+    --$this->contadorMinas;
   }
   function hayMinas() {
     return ($this->contadorMinas > 0)? true : false;

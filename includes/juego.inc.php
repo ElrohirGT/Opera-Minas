@@ -25,8 +25,10 @@ if (isset($_POST['marcar'])) {
     $tabla->unaMinaMenos();
     if (!$tabla->hayMinas()) {
       header("Location: ../ganado.php");
+      exit();
     }
   }
+
 } elseif (isset($_POST['respuesta'])) {
   if(!$celda->obtenerPregunta()->validar($_POST['respuesta'])) {
     $celda->mostrarCelda();
@@ -34,13 +36,15 @@ if (isset($_POST['marcar'])) {
     $tabla->mostrarCeldas($indices, 2);
   }
   $_SESSION['pregunta'] = null;
-} 
-else if ($celda->tieneMina()) {
+
+} else if ($celda->tieneMina()) {
   header("Location: ../perdiste.php");
   exit();
+
 } else if ($celda->tienePregunta()) {
   $_SESSION['pregunta'] = $celda->obtenerPregunta();
   $_SESSION['celda'] = $_POST['celda'];
+
 } else {
   $celda->mostrarCelda();
 }
