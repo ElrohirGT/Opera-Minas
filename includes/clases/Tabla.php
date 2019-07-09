@@ -20,7 +20,7 @@ class Tabla
       }
     }
     //$this->tablero[0][0]->agregarPregunta(new Pregunta("Despeja x: 2x+1=5", 2));
-     $this->xpreguntas =   new preguntas($dificultad);
+     $this->xpreguntas = new Preguntas($dificultad);
     //Array de las preguntas, ordenalas por dificultad, cada pregunta puede ser un objeto de una clase pregunta
     //Asi le añadis tambien funciones para revisar si la respuesta es correcta, y para ordenar las preguntas.
   }
@@ -87,19 +87,20 @@ class Tabla
     $this->contadorMinas = $contador_de_minas;
   }
   function ponerPreguntas(){
-      $contador_de_preguntas=0;
+    $contador_de_preguntas=0;
     $total_casillas=$this->dificultad*$this->dificultad;
     $total_preguntas=$total_casillas*0.20;
     while($contador_de_preguntas<$total_preguntas){
       $indice=rand(0, $this->dificultad-1);
       $subindice=rand(0, $this->dificultad-1);
-        $celda=$this->tablero[$indice][$subindice];
-        if(!$celda->tieneMina() && !$celda ->tienePregunta()){
-          $numeroPregunta = rand(0,9);
-          $celda->agregarPregunta($this->xpreguntas[$numeroPregunta]);         
-          $contador_de_preguntas++;
-          $this->tablero[$indice][$subindice]=$celda;
-        }
+      $celda=$this->tablero[$indice][$subindice];
+      if(!$celda->tieneMina() && !$celda ->tienePregunta()){
+        $numeroPregunta = rand(0,9);
+        $celda->agregarPregunta($this->xpreguntas->preguntas[$numeroPregunta]);         
+        $contador_de_preguntas++;
+        $this->tablero[$indice][$subindice]=$celda;
+      }
+    }
   }
   function ponerIndicaciones() {
     foreach ($this->tablero as $fila => $celdas) {
@@ -115,7 +116,6 @@ class Tabla
         }
       }
     }
-    //Le toca a Flavio
   }
   private function obtenerCeldasAdyacentes($fila, $indice) {
     $posiciones = [
